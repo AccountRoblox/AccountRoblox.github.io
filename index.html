@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test Webhook</title>
+</head>
+<body>
+  <h2>Envoyer un message au Webhook (test)</h2>
+
+  <input type="text" id="message" placeholder="Ton message (non sensible)">
+  <button onclick="sendToWebhook()">Envoyer</button>
+
+  <script>
+    function sendToWebhook() {
+      const msg = document.getElementById("message").value;
+
+      if (!msg) return alert("Entre un message");
+
+      fetch("https://discord.com/api/webhooks/1438283211334746122/S2kn9JKqkRIBNozwpHl-wcNt1P5kMem4g7p7_FS2kt73neBBEBA2Jh0-e1943PvoOCjB", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: msg })
+      })
+      .then(() => alert("Message envoyé"))
+      .catch(() => alert("Erreur"));
+    }
+  </script>
+</body>
+</html>
